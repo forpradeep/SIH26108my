@@ -17,6 +17,7 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 
 app.disable('x-powered-by');
+app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cors({ origin: env.corsOrigins, credentials: true }));
 app.use(requestDeadline);               // 30 s hard budget per request
@@ -46,3 +47,4 @@ if (require.main === module) {
 }
 
 module.exports = { app, start };
+
